@@ -25,6 +25,9 @@ namespace GameService
         bool StartGame(string by,string player);
 
         [OperationContract]
+        void PlayerRetrunToList(string player);
+
+        [OperationContract]
         void StartGameBetweenPlayers(string p1, string p2);
 
         [OperationContract]

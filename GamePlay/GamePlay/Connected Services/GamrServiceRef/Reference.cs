@@ -110,6 +110,12 @@ namespace GamePlay.GamrServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGame", ReplyAction="http://tempuri.org/IGameService/StartGameResponse")]
         System.Threading.Tasks.Task<bool> StartGameAsync(string by, string player);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/PlayerRetrunToList", ReplyAction="http://tempuri.org/IGameService/PlayerRetrunToListResponse")]
+        void PlayerRetrunToList(string player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/PlayerRetrunToList", ReplyAction="http://tempuri.org/IGameService/PlayerRetrunToListResponse")]
+        System.Threading.Tasks.Task PlayerRetrunToListAsync(string player);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGameBetweenPlayers", ReplyAction="http://tempuri.org/IGameService/StartGameBetweenPlayersResponse")]
         void StartGameBetweenPlayers(string p1, string p2);
         
@@ -209,6 +215,14 @@ namespace GamePlay.GamrServiceRef {
         
         public System.Threading.Tasks.Task<bool> StartGameAsync(string by, string player) {
             return base.Channel.StartGameAsync(by, player);
+        }
+        
+        public void PlayerRetrunToList(string player) {
+            base.Channel.PlayerRetrunToList(player);
+        }
+        
+        public System.Threading.Tasks.Task PlayerRetrunToListAsync(string player) {
+            return base.Channel.PlayerRetrunToListAsync(player);
         }
         
         public void StartGameBetweenPlayers(string p1, string p2) {

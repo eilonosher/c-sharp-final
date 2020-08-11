@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Drawing;
 using System.Windows.Navigation;
+using System.Windows.Forms;
+using System.Threading;
 
 namespace GamePlay
 {
@@ -30,10 +32,11 @@ namespace GamePlay
         private static int ROW = 6;
         private static int COL = 7;
         private char[,] board;
+        private WaitingForGame watingWindow;
         private char myChar = 'x';
         private char playerChar = 'y';
 
-        public GameWindow(string userName, string selectPlayer, GameServiceClient connectionToServer, ClientCallback clientCallback)
+        public GameWindow(string userName, string selectPlayer, GameServiceClient connectionToServer, ClientCallback clientCallback, WaitingForGame waitingForGame)
         {
             this.actualPlayer = userName;
             this.selectedPlayer = selectPlayer;
@@ -41,6 +44,7 @@ namespace GamePlay
             this.clientCallback = clientCallback;
             this.clientCallback.addGameRef(this);
             this.board = new char[ROW, COL];
+            this.watingWindow = waitingForGame;
             initBoard();
             initMaps();
             InitializeComponent();
@@ -74,44 +78,45 @@ namespace GamePlay
             colMap.Add(6, "c6");
         }
 
-        private void ColCliked(object sender, RoutedEventArgs e)
-        {
-            Button btnSender = (Button)sender;
-            if (btnSender == Col1 )
-            {
-                //some code here
-            }
-           
-            //some code here
-        }
-
 
         private void Col1Cliked(object sender, RoutedEventArgs e)
         {
             handleMove(1);
         }
 
-        private void handleMove(int col)
+        private async void handleMove(int col)
         {
 
             MoveResult moveResult = this.gameServer.ReportMove(col, this.actualPlayer);
             if (moveResult == MoveResult.NotYourTurn)
             {
-                MessageBox.Show("Its not your turn!");
+                System.Windows.MessageBox.Show("Its not your turn!");
                 return;
             }
                
             else if(moveResult == MoveResult.UnlegalMove)
             {
-                MessageBox.Show("Unlegal move try again!");
+                System.Windows.MessageBox.Show("Unlegal move try again!");
                 return;
             }
                 
             else if (moveResult == MoveResult.YouWon)
             {
                 this.updateMyWindowAfterMove(col);
-                MessageBox.Show("ya Winner!Good bye!");
-                this.Close();
+                DialogResult result = System.Windows.Forms.MessageBox.Show("You win!Do you want to play again?", "Win message", MessageBoxButtons.YesNo);
+                if (result.ToString() == "Yes")
+                {
+                    this.watingWindow.Show();
+                    Thread t = new Thread(watingWindow.imBack);
+                    t.Start();
+                   // this.gameServer.PlayerRetrunToList(this.actualPlayer);
+                    this.Close();
+                }
+                else
+                {
+                    this.watingWindow.Close();
+                    this.Close();
+                }
                 return;
             }
                
@@ -134,7 +139,7 @@ namespace GamePlay
             }
             this.board[rowTodraw, col -1] = myChar;
             string result = rowMap[rowTodraw +1] + colMap[col];
-            Button l = (Button)this.FindName(result);
+            System.Windows.Controls.Button l = (System.Windows.Controls.Button)this.FindName(result);
             l.Background = new SolidColorBrush(Colors.Yellow);
 
 
@@ -174,18 +179,36 @@ namespace GamePlay
         {
             string result = rowMap[row + 1] + colMap[col + 1];
 
-            Button l = (Button)this.FindName(result);
+            System.Windows.Controls.Button l = (System.Windows.Controls.Button)this.FindName(result);
 
             l.Background = new SolidColorBrush(Colors.Red);
 
             this.board[row, col] = playerChar;
+
+
             if (moveResult == MoveResult.YouLose)
             {
-                MessageBox.Show("ya Losser!Good bye!");
-                this.Close();
+                DialogResult resultDialog = System.Windows.Forms.MessageBox.Show("You lose!Do you want to play again?", "Lose message", MessageBoxButtons.YesNo);
+                if (resultDialog.ToString() == "Yes")
+                {
+                    this.watingWindow.Show();
+                    Thread t = new Thread(watingWindow.imBack);
+                    t.Start();
+                    // this.gameServer.PlayerRetrunToList(this.actualPlayer);
+                    this.Close();
+                }
+                else
+                {
+                    this.watingWindow.Close();
+                    this.Close();
+                }
                 return;
             }
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //this.watingWindow.Close();
+        }
     }
 }

@@ -69,11 +69,7 @@ namespace GamePlay
 
         public void updateUserList(string user,string action)
         {
-            // System.Windows.MessageBox.Show(user);
-            /* listOfAvliablePlayers = null;
-             userList.Add(user);
-             listOfAvliablePlayers.ItemsSource = userList;
-             listOfAvliablePlayers.Items.Refresh();*/
+            if (user.Equals(this.userName)) return;
             if (action.Equals("Add"))
             {
                 userList.Add(user);
@@ -88,14 +84,13 @@ namespace GamePlay
                 listOfAvliablePlayers.ItemsSource = userList;
                 listOfAvliablePlayers.Items.Refresh();
             }
-             
-
-
+   
         }
 
         internal void startWithAnotherPlayer(string p1)
         {
-            GameWindow newGame = new GameWindow(this.userName, p1, this.connectionToServer,clientCallback);
+            GameWindow newGame = new GameWindow(this.userName, p1, this.connectionToServer,clientCallback,this);
+            this.userList.Remove(p1);
             newGame.Show();
             this.Hide();
         }
@@ -109,6 +104,11 @@ namespace GamePlay
                 startWithAnotherPlayer(selectPlayer);
                 connectionToServer.StartGameBetweenPlayers(this.userName, selectPlayer);
             }
+        }
+
+        internal void imBack()
+        {
+            connectionToServer.PlayerRetrunToList(this.userName);
         }
 
         private void windowClosed(object sender, EventArgs e)

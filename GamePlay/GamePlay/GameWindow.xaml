@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamePlay"
         mc:Ignorable="d"
-        Title="GameWindow" Height="450" Width="800">
+        Title="GameWindow" Height="450" Width="800"
+        Closed="Window_Closed">
     <Grid Margin="0,47,2,0">
 
         <UniformGrid Rows="6" Columns="7" Margin="20" Background="Red" Name="mainGrid">

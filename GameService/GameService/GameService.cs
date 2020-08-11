@@ -22,6 +22,8 @@ namespace GameService
         public void Disconnect(string player)
         {
             avilableClinets.Remove(player);
+            if (this.games[player] != null)
+                this.games.Remove(player);
             foreach (var callBack in avilableClinets.Values)
             {
                 callBack.OtherPlayerDisconnected(player);
@@ -104,7 +106,28 @@ namespace GameService
         {
             Dictionary<string, ICallback> temp = new Dictionary<string, ICallback>(this.avilableClinets);
             temp.Remove(user);
+            temp = filterUserThatPlaying(temp);
             return temp;
+        }
+
+        private Dictionary<string, ICallback> filterUserThatPlaying(Dictionary<string, ICallback> list)
+        {
+            Dictionary<string, ICallback> temp = new Dictionary<string, ICallback>();
+            foreach (var key in list.Keys)
+            {
+                if (!games.ContainsKey(key))
+                {
+                    temp.Add(key, list[key]);
+                }
+            }
+            return temp;
+        }
+
+        public void PlayerRetrunToList(string player)
+        {
+            if (this.games[player] != null)
+                this.games.Remove(player);
+            this.updateAllClinetToUpdateList(player);
         }
     }
 }
