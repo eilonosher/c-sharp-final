@@ -48,6 +48,7 @@ namespace GamePlay
             initBoard();
             initMaps();
             InitializeComponent();
+            pvsp.Content = userName + " VS " + selectPlayer;
         }
 
         private void initBoard()

@@ -19,10 +19,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <StackPanel>
+            <Label Name="usrName" FontSize="15"/>
+        </StackPanel>
+        
         <!--OPTIONS-->
-        <GroupBox Name="gbOptions" Header="Play Game" FontWeight="Bold" Grid.Row="0" 
-                 Margin="5" Grid.Column="0" Grid.RowSpan="3">
+        <GroupBox Name="gbOptions" Header="Game options" FontWeight="Bold" Grid.Row="0" 
+                 Margin="5,58,5,36" Grid.Column="0" Grid.RowSpan="4">
             <Grid Name="gameGrid" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -45,10 +48,5 @@
                       Grid.Column="1" Grid.RowSpan="4" Margin="5" FontWeight="Bold">
             <ListBox Name="listOfAvliablePlayers"/>
         </GroupBox>
-        <Button Name="btnRefreshRivals" Grid.Column="1" Grid.Row="6" Margin="40,20" Click="btnRefreshRivals_Click">
-            <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
-                        Refresh rivals list
-            </TextBlock>
-        </Button>
     </Grid>
 </Window>

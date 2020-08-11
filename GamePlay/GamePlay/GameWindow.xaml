@@ -7,9 +7,12 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800"
         Closed="Window_Closed">
-    <Grid Margin="0,47,2,0">
-
-        <UniformGrid Rows="6" Columns="7" Margin="20" Background="Red" Name="mainGrid">
+    
+    <Grid >
+        <StackPanel>
+            <Label Name="pvsp" FontSize="30" Height="50"/>
+        </StackPanel>
+        <UniformGrid Rows="6" Columns="7" Margin="40" Background="Red" Name="mainGrid">
             <Button Name="r1c1" Background="White" FontSize="60" Margin="3" Click="Col1Cliked"/>
             <Button Name="r1c2" Background="White" FontSize="60" Margin="3"  Click="Col2Cliked"/>
             <Button Name="r1c3" Background="White" FontSize="60" Margin="3"  Click="Col3Cliked"/>
@@ -55,12 +58,6 @@
 
 
         </UniformGrid>
-        <Button Name="Col1" Margin="35,0,685,352" Content="Insert" Click="Col1Cliked"/>
-        <Button x:Name="Col2" Margin="145,0,575,352" Content="Insert" Click="Col2Cliked"/>
-        <Button x:Name="Col3" Margin="250,0,470,352" Content="Insert" Click="Col3Cliked"/>
-        <Button x:Name="Col4" Margin="360,0,360,352" Content="Insert" Click="Col4Cliked"/>
-        <Button x:Name="Col5" Margin="465,0,255,352" Content="Insert" Click="Col5Cliked"/>
-        <Button x:Name="Col6" Margin="575,0,145,352" Content="Insert" Click="Col6Cliked"/>
-        <Button x:Name="Col7" Margin="680,0,40,352" Content="Insert" Click="Col7Cliked"/>
+        
     </Grid>
 </Window>

@@ -42,6 +42,7 @@ namespace GamePlay
             userList = connectionToServer.GetAvliableClientsForUser(this.userName).Keys.ToList();
             listOfAvliablePlayers.ItemsSource = connectionToServer.GetAvliableClientsForUser(this.userName).Keys.ToList();
             clientCallback.addWindowRef(this);
+            usrName.Content = "Hello " + name;
 
         }
 
