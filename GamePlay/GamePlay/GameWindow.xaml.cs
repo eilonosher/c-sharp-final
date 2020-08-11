@@ -134,7 +134,7 @@ namespace GamePlay
             }
             this.board[rowTodraw, col -1] = myChar;
             string result = rowMap[rowTodraw +1] + colMap[col];
-            Label l = (Label)this.FindName(result);
+            Button l = (Button)this.FindName(result);
             l.Background = new SolidColorBrush(Colors.Yellow);
 
 
@@ -174,7 +174,7 @@ namespace GamePlay
         {
             string result = rowMap[row + 1] + colMap[col + 1];
 
-            Label l = (Label)this.FindName(result);
+            Button l = (Button)this.FindName(result);
 
             l.Background = new SolidColorBrush(Colors.Red);
 

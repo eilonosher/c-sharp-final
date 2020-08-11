@@ -7,50 +7,50 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="450" Width="800">
     <Grid Margin="0,47,2,0">
-        
+
         <UniformGrid Rows="6" Columns="7" Margin="20" Background="Red" Name="mainGrid">
-            <Label Name="r1c1" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r1c2" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r1c3" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r1c4" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r1c5" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r1c6" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r1c7" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r2c1" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r2c2" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r2c3" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r2c4" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r2c5" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r2c6" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r2c7" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r3c1" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r3c2" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r3c3" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r3c4" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r3c5" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r3c6" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r3c7" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r4c1" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r4c2" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r4c3" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r4c4" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r4c5" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r4c6" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r4c7" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r5c1" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r5c2" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r5c3" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r5c4" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r5c5" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r5c6" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r5c7" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r6c1" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r6c2" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r6c3" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r6c4" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r6c5" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r6c6" Background="White" FontSize="60" Margin="3"/>
-            <Label Name="r6c7" Background="White" FontSize="60" Margin="3"/>
+            <Button Name="r1c1" Background="White" FontSize="60" Margin="3" Click="Col1Cliked"/>
+            <Button Name="r1c2" Background="White" FontSize="60" Margin="3"  Click="Col2Cliked"/>
+            <Button Name="r1c3" Background="White" FontSize="60" Margin="3"  Click="Col3Cliked"/>
+            <Button Name="r1c4" Background="White" FontSize="60" Margin="3"  Click="Col4Cliked"/>
+            <Button Name="r1c5" Background="White" FontSize="60" Margin="3" Click="Col5Cliked"/>
+            <Button Name="r1c6" Background="White" FontSize="60" Margin="3" Click="Col6Cliked"/>
+            <Button Name="r1c7" Background="White" FontSize="60" Margin="3" Click="Col7Cliked"/>
+            <Button Name="r2c1" Background="White" FontSize="60" Margin="3" Click="Col1Cliked"/>
+            <Button Name="r2c2" Background="White" FontSize="60" Margin="3"  Click="Col2Cliked"/>
+            <Button Name="r2c3" Background="White" FontSize="60" Margin="3"  Click="Col3Cliked"/>
+            <Button Name="r2c4" Background="White" FontSize="60" Margin="3" Click="Col4Cliked"/>
+            <Button Name="r2c5" Background="White" FontSize="60" Margin="3" Click="Col5Cliked"/>
+            <Button Name="r2c6" Background="White" FontSize="60" Margin="3" Click="Col6Cliked"/>
+            <Button Name="r2c7" Background="White" FontSize="60" Margin="3" Click="Col7Cliked"/>
+            <Button Name="r3c1" Background="White" FontSize="60" Margin="3" Click="Col1Cliked"/>
+            <Button Name="r3c2" Background="White" FontSize="60" Margin="3" Click="Col2Cliked"/>
+            <Button Name="r3c3" Background="White" FontSize="60" Margin="3" Click="Col3Cliked"/>
+            <Button Name="r3c4" Background="White" FontSize="60" Margin="3" Click="Col4Cliked"/>
+            <Button Name="r3c5" Background="White" FontSize="60" Margin="3" Click="Col5Cliked"/>
+            <Button Name="r3c6" Background="White" FontSize="60" Margin="3" Click="Col6Cliked"/>
+            <Button Name="r3c7" Background="White" FontSize="60" Margin="3" Click="Col7Cliked"/>
+            <Button Name="r4c1" Background="White" FontSize="60" Margin="3" Click="Col1Cliked"/>
+            <Button Name="r4c2" Background="White" FontSize="60" Margin="3" Click="Col2Cliked"/>
+            <Button Name="r4c3" Background="White" FontSize="60" Margin="3" Click="Col3Cliked"/>
+            <Button Name="r4c4" Background="White" FontSize="60" Margin="3" Click="Col4Cliked"/>
+            <Button Name="r4c5" Background="White" FontSize="60" Margin="3" Click="Col5Cliked"/>
+            <Button Name="r4c6" Background="White" FontSize="60" Margin="3" Click="Col6Cliked"/>
+            <Button Name="r4c7" Background="White" FontSize="60" Margin="3" Click="Col7Cliked"/>
+            <Button Name="r5c1" Background="White" FontSize="60" Margin="3" Click="Col1Cliked"/>
+            <Button Name="r5c2" Background="White" FontSize="60" Margin="3" Click="Col2Cliked"/>
+            <Button Name="r5c3" Background="White" FontSize="60" Margin="3" Click="Col3Cliked"/>
+            <Button Name="r5c4" Background="White" FontSize="60" Margin="3" Click="Col4Cliked"/>
+            <Button Name="r5c5" Background="White" FontSize="60" Margin="3" Click="Col5Cliked"/>
+            <Button Name="r5c6" Background="White" FontSize="60" Margin="3" Click="Col6Cliked"/>
+            <Button Name="r5c7" Background="White" FontSize="60" Margin="3" Click="Col7Cliked"/>
+            <Button Name="r6c1" Background="White" FontSize="60" Margin="3" Click="Col1Cliked"/>
+            <Button Name="r6c2" Background="White" FontSize="60" Margin="3" Click="Col2Cliked"/>
+            <Button Name="r6c3" Background="White" FontSize="60" Margin="3" Click="Col3Cliked"/>
+            <Button Name="r6c4" Background="White" FontSize="60" Margin="3" Click="Col4Cliked"/>
+            <Button Name="r6c5" Background="White" FontSize="60" Margin="3" Click="Col5Cliked"/>
+            <Button Name="r6c6" Background="White" FontSize="60" Margin="3" Click="Col6Cliked"/>
+            <Button Name="r6c7" Background="White" FontSize="60" Margin="3" Click="Col7Cliked"/>
 
 
         </UniformGrid>
