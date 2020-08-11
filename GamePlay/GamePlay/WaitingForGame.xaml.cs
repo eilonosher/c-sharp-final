@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +28,7 @@ namespace GamePlay
         public delegate void UpdateUsers();
         public event UpdateUsers updateUsers;
         private List<string> userList;
+        private bool deleteWindowRefrence = false;
         public WaitingForGame()
         {
             InitializeComponent();
@@ -112,11 +114,11 @@ namespace GamePlay
             connectionToServer.PlayerRetrunToList(this.userName);
         }
 
-        private void windowClosed(object sender, EventArgs e)
-        {
-            connectionToServer.Disconnect(this.userName);
-        }
 
-    
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Thread t = new Thread(() => connectionToServer.Disconnect(this.userName));
+            t.Start();
+        }
     }
 }

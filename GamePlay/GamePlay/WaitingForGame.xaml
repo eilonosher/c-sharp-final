@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GamePlay"
         mc:Ignorable="d"
         Title="Select player" Height="450" Width="800"
-        Closed="windowClosed">
+        Closing="Window_Closing">
     <Grid Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
