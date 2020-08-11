@@ -17,3 +17,4 @@ C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GameService\Ga
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GameService\GameService\obj\Debug\GameService.csproj.CoreCompileInputs.cache
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GameService\GameService\obj\Debug\GameService.dll
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GameService\GameService\obj\Debug\GameService.pdb
+C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GameService\GameService\obj\Debug\GameService.csprojAssemblyReference.cache

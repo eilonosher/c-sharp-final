@@ -93,9 +93,10 @@ namespace GameService
 
         private void updateAllOtherUserToUpdateList(string p1, string p2)
         {
-            foreach (var callBack in avilableClinets.Values)
+            foreach (var pair in avilableClinets)
             {
-                callBack.OtherPlayerStartedGame(p1,p2);
+                if(!pair.Key.Equals(p1) && !pair.Key.Equals(p2))
+                     pair.Value.OtherPlayerStartedGame(p1,p2);
             }
         }
 
