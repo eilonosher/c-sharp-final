@@ -96,9 +96,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="OtherPlayerConnected">
+  <xs:element name="OtherPlayerDisconnected">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OtherPlayerStartedGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="user1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="user2" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OtherPlayerMoved">
@@ -121,7 +131,6 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="action" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

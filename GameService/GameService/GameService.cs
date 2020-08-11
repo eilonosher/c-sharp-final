@@ -51,7 +51,7 @@ namespace GameService
         {
             foreach(var callBack in avilableClinets.Values)
             {
-                callBack.OtherPlayerSignIn(name,"Add");
+                callBack.OtherPlayerSignIn(name);
             }
         }
 
@@ -84,6 +84,15 @@ namespace GameService
             GameZone gameZone = new GameZone(p1, p2, this.avilableClinets[p1], this.avilableClinets[p2]);
             this.games.Add(p1, gameZone);
             this.games.Add(p2, gameZone);
+            updateAllOtherUserToUpdateList(p1, p2);
+        }
+
+        private void updateAllOtherUserToUpdateList(string p1, string p2)
+        {
+            foreach (var callBack in avilableClinets.Values)
+            {
+                callBack.OtherPlayerStartedGame(p1,p2);
+            }
         }
 
         public Dictionary<string, ICallback> GetAvliableClientsForUser(string user)

@@ -132,8 +132,11 @@ namespace GamePlay.GamrServiceRef {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IGameServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/OtherPlayerConnected")]
-        void OtherPlayerConnected();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/OtherPlayerDisconnected")]
+        void OtherPlayerDisconnected(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/OtherPlayerStartedGame")]
+        void OtherPlayerStartedGame(string user1, string user2);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/OtherPlayerMoved")]
         void OtherPlayerMoved(GamePlay.GamrServiceRef.MoveResult moveResult, int row, int col);
@@ -142,7 +145,7 @@ namespace GamePlay.GamrServiceRef {
         void StartGameUser(string p1);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/OtherPlayerSignIn")]
-        void OtherPlayerSignIn(string name, string action);
+        void OtherPlayerSignIn(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ConfirmGame", ReplyAction="http://tempuri.org/IGameService/ConfirmGameResponse")]
         bool ConfirmGame(string userToGame);

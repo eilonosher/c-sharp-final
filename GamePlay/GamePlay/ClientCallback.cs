@@ -52,12 +52,6 @@ namespace GamePlay
             string a = null;
         }
 
-        public void OtherPlayerSignIn(string user,string action)
-        {
-            if(this.cuurentWindow != null )
-            this.cuurentWindow.updateUserList(user,"Add");
-        }
-
 
         bool IGameServiceCallback.ConfirmGame(string userToGame)
         {
@@ -74,5 +68,36 @@ namespace GamePlay
             this.cuurentGameWindow.playerMove(moveResult, row, col);
         }
 
+        public void OtherPlayerConnected(string user)
+        {
+          
+        }
+
+        public void OtherPlayerSignIn(string user)
+        {
+            if (this.cuurentWindow != null)
+                this.cuurentWindow.updateUserList(user, "Add");
+        }
+
+       
+
+        public void OtherPlayerDisconnected(string user)
+        {
+            if (this.cuurentWindow != null)
+            {
+                this.cuurentWindow.updateUserList(user, "Del");
+            }
+
+        }
+
+        public void OtherPlayerStartedGame(string user1, string user2)
+        {
+            if (this.cuurentWindow != null)
+            {
+                this.cuurentWindow.updateUserList(user1, "Del");
+                this.cuurentWindow.updateUserList(user2, "Del");
+            }
+
+        }
     }
 }

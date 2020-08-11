@@ -67,15 +67,28 @@ namespace GamePlay
             connectionToServer.Disconnect(this.userName);
         }
 
-        public async void updateUserList(string user,string action)
+        public void updateUserList(string user,string action)
         {
             // System.Windows.MessageBox.Show(user);
             /* listOfAvliablePlayers = null;
              userList.Add(user);
              listOfAvliablePlayers.ItemsSource = userList;
              listOfAvliablePlayers.Items.Refresh();*/
-             userList.Add(user);
-            listOfAvliablePlayers.ItemsSource = userList;
+            if (action.Equals("Add"))
+            {
+                userList.Add(user);
+                listOfAvliablePlayers.ItemsSource = null;
+                listOfAvliablePlayers.ItemsSource = userList;
+                listOfAvliablePlayers.Items.Refresh();
+            }
+            else
+            {
+                userList.Remove(user);
+                listOfAvliablePlayers.ItemsSource = null;
+                listOfAvliablePlayers.ItemsSource = userList;
+                listOfAvliablePlayers.Items.Refresh();
+            }
+             
 
 
         }

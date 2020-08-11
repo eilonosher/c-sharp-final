@@ -37,7 +37,9 @@ namespace GameService
     public interface ICallback
     {
         [OperationContract(IsOneWay = true)]
-        void OtherPlayerConnected();
+        void OtherPlayerDisconnected(string name);
+        [OperationContract(IsOneWay = true)]
+        void OtherPlayerStartedGame(string user1, string user2);
 
         [OperationContract(IsOneWay = true)]
         void OtherPlayerMoved(MoveResult moveResult, int row, int col);
@@ -46,7 +48,7 @@ namespace GameService
         void StartGameUser(string p1);
 
         [OperationContract(IsOneWay = true)]
-        void OtherPlayerSignIn(string name,string action);
+        void OtherPlayerSignIn(string name);
 
         [OperationContract]
         bool ConfirmGame(string userToGame);
