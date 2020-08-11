@@ -22,6 +22,10 @@ namespace GameService
         public void Disconnect(string player)
         {
             avilableClinets.Remove(player);
+            foreach (var callBack in avilableClinets.Values)
+            {
+                callBack.OtherPlayerDisconnected(player);
+            }
         }
 
         public void DisconnectBeforeGame(int player)
