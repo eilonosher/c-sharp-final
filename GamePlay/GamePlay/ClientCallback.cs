@@ -1,4 +1,4 @@
-﻿using GamePlay.GamrServiceRef;
+﻿using GamePlay.GameServiceRef;
 using System;
 using System.Collections.Generic;
 using System.Linq;

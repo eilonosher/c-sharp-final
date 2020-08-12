@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GamePlay.GamrServiceRef {
+namespace GamePlay.GameServiceRef {
     using System.Runtime.Serialization;
     using System;
     
@@ -82,28 +82,28 @@ namespace GamePlay.GamrServiceRef {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GamrServiceRef.IGameService", CallbackContract=typeof(GamePlay.GamrServiceRef.IGameServiceCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameServiceRef.IGameService", CallbackContract=typeof(GamePlay.GameServiceRef.IGameServiceCallback))]
     public interface IGameService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Register", ReplyAction="http://tempuri.org/IGameService/RegisterResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GamrServiceRef.OpponentDisconnectedFault), Action="http://tempuri.org/IGameService/RegisterOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GameServiceRef.OpponentDisconnectedFault), Action="http://tempuri.org/IGameService/RegisterOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
         void Register(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Register", ReplyAction="http://tempuri.org/IGameService/RegisterResponse")]
         System.Threading.Tasks.Task RegisterAsync(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/SingIn", ReplyAction="http://tempuri.org/IGameService/SingInResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GamrServiceRef.OpponentDisconnectedFault), Action="http://tempuri.org/IGameService/SingInOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GameServiceRef.OpponentDisconnectedFault), Action="http://tempuri.org/IGameService/SingInOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
         void SingIn(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/SingIn", ReplyAction="http://tempuri.org/IGameService/SingInResponse")]
         System.Threading.Tasks.Task SingInAsync(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ReportMove", ReplyAction="http://tempuri.org/IGameService/ReportMoveResponse")]
-        GamePlay.GamrServiceRef.MoveResult ReportMove(int location, string player);
+        GamePlay.GameServiceRef.MoveResult ReportMove(int location, string player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ReportMove", ReplyAction="http://tempuri.org/IGameService/ReportMoveResponse")]
-        System.Threading.Tasks.Task<GamePlay.GamrServiceRef.MoveResult> ReportMoveAsync(int location, string player);
+        System.Threading.Tasks.Task<GamePlay.GameServiceRef.MoveResult> ReportMoveAsync(int location, string player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Disconnect", ReplyAction="http://tempuri.org/IGameService/DisconnectResponse")]
         void Disconnect(string player);
@@ -152,7 +152,7 @@ namespace GamePlay.GamrServiceRef {
         void OtherPlayerStartedGame(string user1, string user2);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/OtherPlayerMoved")]
-        void OtherPlayerMoved(GamePlay.GamrServiceRef.MoveResult moveResult, int row, int col);
+        void OtherPlayerMoved(GamePlay.GameServiceRef.MoveResult moveResult, int row, int col);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGameUser")]
         void StartGameUser(string p1);
@@ -165,12 +165,12 @@ namespace GamePlay.GamrServiceRef {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGameServiceChannel : GamePlay.GamrServiceRef.IGameService, System.ServiceModel.IClientChannel {
+    public interface IGameServiceChannel : GamePlay.GameServiceRef.IGameService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GameServiceClient : System.ServiceModel.DuplexClientBase<GamePlay.GamrServiceRef.IGameService>, GamePlay.GamrServiceRef.IGameService {
+    public partial class GameServiceClient : System.ServiceModel.DuplexClientBase<GamePlay.GameServiceRef.IGameService>, GamePlay.GameServiceRef.IGameService {
         
         public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -208,11 +208,11 @@ namespace GamePlay.GamrServiceRef {
             return base.Channel.SingInAsync(user, pass);
         }
         
-        public GamePlay.GamrServiceRef.MoveResult ReportMove(int location, string player) {
+        public GamePlay.GameServiceRef.MoveResult ReportMove(int location, string player) {
             return base.Channel.ReportMove(location, player);
         }
         
-        public System.Threading.Tasks.Task<GamePlay.GamrServiceRef.MoveResult> ReportMoveAsync(int location, string player) {
+        public System.Threading.Tasks.Task<GamePlay.GameServiceRef.MoveResult> ReportMoveAsync(int location, string player) {
             return base.Channel.ReportMoveAsync(location, player);
         }
         
