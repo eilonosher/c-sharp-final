@@ -45,11 +45,6 @@ namespace GamePlay
             GameWindowManger.Instance.WaitingForGameWindow.startWithAnotherPlayer(p1);
         }
 
-        public void OtherPlayerMoved(MoveResult moveResult, int row, int col)
-        {
-            GameWindowManger.Instance.GameWindow.playerMove(moveResult, row, col);
-        }
-
         public void OtherPlayerConnected(string user)
         {
           
@@ -69,6 +64,11 @@ namespace GamePlay
         {
             GameWindowManger.Instance.WaitingForGameWindow.updateUserList(user1, "Del");
             GameWindowManger.Instance.WaitingForGameWindow.updateUserList(user2, "Del");
+        }
+
+        public void OtherPlayerMoved(MoveResult moveResult, int row, int col, Point p)
+        {
+            GameWindowManger.Instance.GameWindow.playerMove(moveResult, row, col,p);
         }
     }
 }

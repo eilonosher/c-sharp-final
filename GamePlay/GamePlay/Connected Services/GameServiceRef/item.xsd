@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/Design_Time_Addresses/GameService/Service1/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Windows" />
   <xs:import schemaLocation="http://localhost:8080/Design_Time_Addresses/GameService/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GameService" />
-  <xs:import schemaLocation="http://localhost:8080/Design_Time_Addresses/GameService/Service1/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:8080/Design_Time_Addresses/GameService/Service1/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="Register">
     <xs:complexType>
       <xs:sequence>
@@ -33,13 +34,14 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="location" type="xs:int" />
         <xs:element minOccurs="0" name="player" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="p" type="q1:Point" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportMoveResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="ReportMoveResult" type="q1:MoveResult" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="ReportMoveResult" type="q2:MoveResult" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -103,7 +105,7 @@
   <xs:element name="GetAvliableClientsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAvliableClientsResult" nillable="true" type="q2:ArrayOfKeyValueOfstringanyType" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAvliableClientsResult" nillable="true" type="q3:ArrayOfKeyValueOfstringanyType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -117,7 +119,7 @@
   <xs:element name="GetAvliableClientsForUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAvliableClientsForUserResult" nillable="true" type="q3:ArrayOfKeyValueOfstringanyType" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAvliableClientsForUserResult" nillable="true" type="q4:ArrayOfKeyValueOfstringanyType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -139,9 +141,10 @@
   <xs:element name="OtherPlayerMoved">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="moveResult" type="q4:MoveResult" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="moveResult" type="q5:MoveResult" />
         <xs:element minOccurs="0" name="row" type="xs:int" />
         <xs:element minOccurs="0" name="col" type="xs:int" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System.Windows" minOccurs="0" name="p" type="q6:Point" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

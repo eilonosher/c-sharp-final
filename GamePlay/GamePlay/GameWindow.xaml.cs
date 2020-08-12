@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Windows.Navigation;
 using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Shapes;
 
 namespace GamePlay
 {
@@ -36,6 +37,13 @@ namespace GamePlay
         private char myChar = 'x';
         private char playerChar = 'y';
         private bool userExit = true;
+
+        private double DISC_SIZE = 60;
+
+        private double WIDTH_MARGIN = 0.15;
+        private readonly static int HEIGHT_MARGIN = 20;
+        private readonly static int BOTTOM_MARGIN = 10;
+        private readonly int[] board_state = new int[ROW];
 
         public GameWindow(string userName, string selectPlayer, GameServiceClient connectionToServer, ClientCallback clientCallback)
         {
@@ -81,30 +89,25 @@ namespace GamePlay
         }
 
 
-        private void Col1Cliked(object sender, RoutedEventArgs e)
-        {
-            handleMove(1);
-        }
 
-        private async void handleMove(int col)
+        private void handleMove(System.Windows.Point p, int col)
         {
-
-            MoveResult moveResult = this.gameServer.ReportMove(col, this.actualPlayer);
+            MoveResult moveResult = this.gameServer.ReportMove(col + 1, this.actualPlayer,p);
             if (moveResult == MoveResult.NotYourTurn)
             {
                 System.Windows.MessageBox.Show("Its not your turn!");
                 return;
             }
-               
-            else if(moveResult == MoveResult.UnlegalMove)
+
+            else if (moveResult == MoveResult.UnlegalMove)
             {
                 System.Windows.MessageBox.Show("Unlegal move try again!");
                 return;
             }
-                
+
             else if (moveResult == MoveResult.YouWon)
             {
-                this.updateMyWindowAfterMove(col);
+                this.draw(p, col, System.Windows.Media.Brushes.Green);
                 DialogResult result = System.Windows.Forms.MessageBox.Show("You win!Do you want to play again?", "Win message", MessageBoxButtons.YesNo);
                 if (result.ToString() == "Yes")
                 {
@@ -121,9 +124,59 @@ namespace GamePlay
                 }
                 return;
             }
-               
-            this.updateMyWindowAfterMove(col);
+            this.draw(p, col, System.Windows.Media.Brushes.Green);
+        }
 
+        private void draw(System.Windows.Point p, int col, SolidColorBrush color)
+        {
+            Ellipse el = new Ellipse
+            {
+                Fill = color,
+                Height = DISC_SIZE,
+                Width = DISC_SIZE
+            };
+            DiscGame newDisc = new DiscGame
+            {
+                Circle = el,
+                Y = p.Y - el.Height / 2,
+                Column = col,
+                X = (col + WIDTH_MARGIN) / COL * gamePicture.ActualWidth
+            };
+            board_state[newDisc.Column]++;
+
+            Canvas.SetTop(el, newDisc.Y);
+            Canvas.SetLeft(el, newDisc.X);
+            gamePicture.Children.Add(el);
+            ThreadPool.QueueUserWorkItem(DisplayDisc, newDisc);
+        }
+
+        private void DisplayDisc(object disc)
+        {
+            DiscGame b = disc as DiscGame;
+            while (true)
+            {
+                if (YOut(b))
+                {
+                    break;
+                }
+                Thread.Sleep(2);
+                b.Y += 1;
+                Dispatcher.Invoke(() =>
+                {
+                    Canvas.SetTop(b.Circle, b.Y);
+                    Canvas.SetLeft(b.Circle, b.X);
+                });
+            }
+        }
+
+        private bool YOut(DiscGame d)
+        {
+            bool result = false;
+            Dispatcher.Invoke(() =>
+            {
+                result = d.Y > gamePicture.ActualHeight - ((DISC_SIZE + HEIGHT_MARGIN) * board_state[d.Column]) + BOTTOM_MARGIN || d.Y < 0;
+            });
+            return result;
         }
 
         private void updateMyWindowAfterMove(int col)
@@ -147,46 +200,9 @@ namespace GamePlay
 
         }
 
-        private void Col2Cliked(object sender, RoutedEventArgs e)
+
+        internal void playerMove(MoveResult moveResult, int row, int col, System.Windows.Point p)
         {
-            handleMove(2);
-        }
-
-        private void Col3Cliked(object sender, RoutedEventArgs e)
-        {
-            handleMove(3);
-        }
-
-        private void Col4Cliked(object sender, RoutedEventArgs e)
-        {
-            handleMove(4);
-        }
-
-        private void Col5Cliked(object sender, RoutedEventArgs e)
-        {
-            handleMove(5);
-        }
-
-        private void Col6Cliked(object sender, RoutedEventArgs e)
-        {
-            handleMove(6);
-        }
-
-        private void Col7Cliked(object sender, RoutedEventArgs e)
-        {
-            handleMove(7);
-        }
-
-        internal void playerMove(MoveResult moveResult, int row, int col)
-        {
-            string result = rowMap[row + 1] + colMap[col + 1];
-
-            System.Windows.Controls.Button l = (System.Windows.Controls.Button)this.FindName(result);
-
-            l.Background = new SolidColorBrush(Colors.Red);
-
-            this.board[row, col] = playerChar;
-
 
             if (moveResult == MoveResult.YouLose)
             {
@@ -207,6 +223,7 @@ namespace GamePlay
                 }
                 return;
             }
+            this.draw(p, col, System.Windows.Media.Brushes.Red);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -216,7 +233,32 @@ namespace GamePlay
                 Thread t = new Thread(GameWindowManger.Instance.WaitingForGameWindow.Close);
                 t.Start();
             }
+
           
+        }
+
+        private void gamePicture_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point p = e.GetPosition(gamePicture);
+            int col = (int)Math.Floor(p.X / gamePicture.ActualWidth * COL);
+            if (!isInWIndowRange(p))
+                return;
+            handleMove(p, col);
+        }
+
+      
+
+        private bool isInWIndowRange(System.Windows.Point p)
+        {
+            bool result = false;
+            Dispatcher.Invoke(() =>
+            {
+                result = p.X > 0 &&
+                p.X < gamePicture.ActualWidth &&
+                p.Y > 0 &&
+                p.Y < gamePicture.ActualHeight;
+            });
+            return result;
         }
     }
 }

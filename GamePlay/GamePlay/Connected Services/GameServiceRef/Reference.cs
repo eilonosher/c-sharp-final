@@ -100,10 +100,10 @@ namespace GamePlay.GameServiceRef {
         System.Threading.Tasks.Task SingInAsync(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ReportMove", ReplyAction="http://tempuri.org/IGameService/ReportMoveResponse")]
-        GamePlay.GameServiceRef.MoveResult ReportMove(int location, string player);
+        GamePlay.GameServiceRef.MoveResult ReportMove(int location, string player, System.Windows.Point p);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ReportMove", ReplyAction="http://tempuri.org/IGameService/ReportMoveResponse")]
-        System.Threading.Tasks.Task<GamePlay.GameServiceRef.MoveResult> ReportMoveAsync(int location, string player);
+        System.Threading.Tasks.Task<GamePlay.GameServiceRef.MoveResult> ReportMoveAsync(int location, string player, System.Windows.Point p);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Disconnect", ReplyAction="http://tempuri.org/IGameService/DisconnectResponse")]
         void Disconnect(string player);
@@ -152,7 +152,7 @@ namespace GamePlay.GameServiceRef {
         void OtherPlayerStartedGame(string user1, string user2);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/OtherPlayerMoved")]
-        void OtherPlayerMoved(GamePlay.GameServiceRef.MoveResult moveResult, int row, int col);
+        void OtherPlayerMoved(GamePlay.GameServiceRef.MoveResult moveResult, int row, int col, System.Windows.Point p);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGameUser")]
         void StartGameUser(string p1);
@@ -208,12 +208,12 @@ namespace GamePlay.GameServiceRef {
             return base.Channel.SingInAsync(user, pass);
         }
         
-        public GamePlay.GameServiceRef.MoveResult ReportMove(int location, string player) {
-            return base.Channel.ReportMove(location, player);
+        public GamePlay.GameServiceRef.MoveResult ReportMove(int location, string player, System.Windows.Point p) {
+            return base.Channel.ReportMove(location, player, p);
         }
         
-        public System.Threading.Tasks.Task<GamePlay.GameServiceRef.MoveResult> ReportMoveAsync(int location, string player) {
-            return base.Channel.ReportMoveAsync(location, player);
+        public System.Threading.Tasks.Task<GamePlay.GameServiceRef.MoveResult> ReportMoveAsync(int location, string player, System.Windows.Point p) {
+            return base.Channel.ReportMoveAsync(location, player, p);
         }
         
         public void Disconnect(string player) {

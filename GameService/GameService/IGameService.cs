@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Windows;
 
 namespace GameService
 {
@@ -20,7 +21,7 @@ namespace GameService
         void SingIn(string user, string pass);
 
         [OperationContract]
-        MoveResult ReportMove(int location, string player);
+        MoveResult ReportMove(int location, string player,Point p);
 
         [OperationContract]
         void Disconnect(string player);
@@ -50,7 +51,7 @@ namespace GameService
         void OtherPlayerStartedGame(string user1, string user2);
 
         [OperationContract(IsOneWay = true)]
-        void OtherPlayerMoved(MoveResult moveResult, int row, int col);
+        void OtherPlayerMoved(MoveResult moveResult, int row, int col, Point p);
 
         [OperationContract(IsOneWay = true)]
         void StartGameUser(string p1);

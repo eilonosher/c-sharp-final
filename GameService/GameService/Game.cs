@@ -38,7 +38,7 @@ namespace GameService
             }
         }
 
-        internal MoveResult VerifyMove(int selectedCol, string player)
+        internal MoveResult VerifyMove(int selectedCol, string player, System.Windows.Point p)
         {
             MoveResult moveResult;
             selectedCol = selectedCol - 1;
@@ -55,11 +55,11 @@ namespace GameService
             this.board[i, selectedCol] = player.Equals(p1) ? playerOneChar : playerTwoChar;
             if (ItsAWin(player))
             {
-                notifyAnotherPlayer(player, i, selectedCol, MoveResult.YouLose);
+                notifyAnotherPlayer(player, i, selectedCol, MoveResult.YouLose,p);
                 return MoveResult.YouWon;
             }
             this.changePlayerTurn();
-            notifyAnotherPlayer(player, i, selectedCol, MoveResult.GameOn);
+            notifyAnotherPlayer(player, i, selectedCol, MoveResult.GameOn,p);
             return MoveResult.GameOn;
 
         }
@@ -69,15 +69,15 @@ namespace GameService
             currentPlayer = currentPlayer.Equals(p1) ? p2 : p1;
         }
 
-        private void notifyAnotherPlayer(string player, int i, int selectedCol, MoveResult result)
+        private void notifyAnotherPlayer(string player, int i, int selectedCol, MoveResult result, System.Windows.Point p)
         {
             if (player.Equals(p1))
             {
-                callback2.OtherPlayerMoved(result, i, selectedCol);
+                callback2.OtherPlayerMoved(result, i, selectedCol,p);
             }
             else
             {
-                callback1.OtherPlayerMoved(result, i, selectedCol);
+                callback1.OtherPlayerMoved(result, i, selectedCol,p);
             }
         }
 

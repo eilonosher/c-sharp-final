@@ -64,9 +64,9 @@ namespace GameService
             }
         }
 
-        public MoveResult ReportMove(int col, string player)
+        public MoveResult ReportMove(int col, string player,Point p)
         {
-           return games[player].VerifyMove(col , player);
+           return games[player].VerifyMove(col , player,p);
         }
 
         public void DisconnectBeforeGame(string player)
