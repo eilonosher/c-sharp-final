@@ -42,7 +42,7 @@ namespace GamePlay
             this.selectedPlayer = selectPlayer;
             this.gameServer = connectionToServer;
             this.clientCallback = clientCallback;
-            this.clientCallback.addGameRef(this);
+            GameWindowManger.Instance.GameWindow = (this);
             this.board = new char[ROW, COL];
             this.watingWindow = waitingForGame;
             initBoard();

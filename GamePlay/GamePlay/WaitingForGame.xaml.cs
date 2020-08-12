@@ -29,11 +29,6 @@ namespace GamePlay
         public event UpdateUsers updateUsers;
         private List<string> userList;
         private bool deleteWindowRefrence = false;
-        public WaitingForGame()
-        {
-            InitializeComponent();
-            clientCallback.addWindowRef(this);
-        }
 
         public WaitingForGame(string name, ClientCallback clientCallback, GameServiceClient connectionToServer)
         {
@@ -43,7 +38,7 @@ namespace GamePlay
             InitializeComponent();
             userList = connectionToServer.GetAvliableClientsForUser(this.userName).Keys.ToList();
             listOfAvliablePlayers.ItemsSource = connectionToServer.GetAvliableClientsForUser(this.userName).Keys.ToList();
-            clientCallback.addWindowRef(this);
+            GameWindowManger.Instance.WaitingForGameWindow = (this);
             usrName.Content = "Hello " + name;
 
         }

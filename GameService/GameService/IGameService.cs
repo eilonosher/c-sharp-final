@@ -39,6 +39,7 @@ namespace GameService
 
         [OperationContract]
         Dictionary<string, ICallback> GetAvliableClientsForUser(string user);
+       
     }
 
     public interface ICallback
@@ -60,6 +61,5 @@ namespace GameService
         [OperationContract]
         bool ConfirmGame(string userToGame);
 
-      
     }
 }
