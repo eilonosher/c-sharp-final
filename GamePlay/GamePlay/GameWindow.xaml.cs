@@ -35,16 +35,17 @@ namespace GamePlay
         private WaitingForGame watingWindow;
         private char myChar = 'x';
         private char playerChar = 'y';
+        private bool userExit = true;
 
-        public GameWindow(string userName, string selectPlayer, GameServiceClient connectionToServer, ClientCallback clientCallback, WaitingForGame waitingForGame)
+        public GameWindow(string userName, string selectPlayer, GameServiceClient connectionToServer, ClientCallback clientCallback)
         {
             this.actualPlayer = userName;
             this.selectedPlayer = selectPlayer;
             this.gameServer = connectionToServer;
             this.clientCallback = clientCallback;
             GameWindowManger.Instance.GameWindow = (this);
+            this.watingWindow = GameWindowManger.Instance.WaitingForGameWindow;
             this.board = new char[ROW, COL];
-            this.watingWindow = waitingForGame;
             initBoard();
             initMaps();
             InitializeComponent();
@@ -110,7 +111,7 @@ namespace GamePlay
                     this.watingWindow.Show();
                     Thread t = new Thread(watingWindow.imBack);
                     t.Start();
-                   // this.gameServer.PlayerRetrunToList(this.actualPlayer);
+                    this.userExit = false;
                     this.Close();
                 }
                 else
@@ -196,6 +197,7 @@ namespace GamePlay
                     Thread t = new Thread(watingWindow.imBack);
                     t.Start();
                     // this.gameServer.PlayerRetrunToList(this.actualPlayer);
+                    this.userExit = false;
                     this.Close();
                 }
                 else
@@ -209,8 +211,12 @@ namespace GamePlay
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Thread t = new Thread(this.watingWindow.Close);
-            t.Start();
+            if (userExit)
+            {
+                Thread t = new Thread(GameWindowManger.Instance.WaitingForGameWindow.Close);
+                t.Start();
+            }
+          
         }
     }
 }

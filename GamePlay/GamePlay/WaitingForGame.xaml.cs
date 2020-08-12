@@ -87,7 +87,7 @@ namespace GamePlay
 
         internal void startWithAnotherPlayer(string p1)
         {
-            GameWindow newGame = new GameWindow(this.userName, p1, this.connectionToServer,clientCallback,this);
+            GameWindow newGame = new GameWindow(this.userName, p1, this.connectionToServer,clientCallback);
             this.userList.Remove(p1);
             newGame.Show();
             this.Hide();

@@ -55,6 +55,9 @@ namespace GameService
 
         private void updateAllClinetToUpdateList(string name)
         {
+            
+            
+            
             foreach(var callBack in avilableClinets.Values)
             {
                 callBack.OtherPlayerSignIn(name);

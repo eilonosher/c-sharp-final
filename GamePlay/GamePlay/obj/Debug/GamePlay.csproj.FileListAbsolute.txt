@@ -44,7 +44,6 @@ C:\Users\USER\Desktop\Git-Hub\C-sharp-final\Final\C-sharp-final\GamePlay\GamePla
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\bin\Debug\GamePlay.exe.config
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\bin\Debug\GamePlay.exe
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\bin\Debug\GamePlay.pdb
-C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.csprojAssemblyReference.cache
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GameWindow.g.cs
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\MainWindow.g.cs
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\Register.g.cs
@@ -64,3 +63,4 @@ C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GameP
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.csproj.CoreCompileInputs.cache
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.exe
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.pdb
+C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.csprojAssemblyReference.cache
