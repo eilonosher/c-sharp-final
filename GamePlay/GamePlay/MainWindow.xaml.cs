@@ -32,16 +32,23 @@ namespace GamePlay
         #endregion
         public MainWindow()
         {
+            clientCallback = new ClientCallback();
             connectionToServer = new GameServiceClient(new InstanceContext(clientCallback));
-
             InitializeComponent();
         }
 
         private void signInClicked(object sender, RoutedEventArgs e)
         {
-            SingIn signIn = new SingIn();
-            signIn.Show();
-            this.Close();
+            loading.Content = "Loading....";
+            try
+            {
+                connectionToServer.SingIn(name.Text.Trim(), (pass.Password.Trim()));
+            }
+            catch (FaultException<OpponentDisconnectedFault> err)
+            {
+                System.Windows.MessageBox.Show(err.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

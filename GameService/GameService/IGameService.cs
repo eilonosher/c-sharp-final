@@ -16,6 +16,10 @@ namespace GameService
         void Register(string user,string pass);
 
         [OperationContract]
+        [FaultContract(typeof(OpponentDisconnectedFault))]
+        void SingIn(string user, string pass);
+
+        [OperationContract]
         MoveResult ReportMove(int location, string player);
 
         [OperationContract]

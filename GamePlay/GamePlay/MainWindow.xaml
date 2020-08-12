@@ -7,10 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
-        <StackPanel>
-            <Button Content="Sign In" Width="75" Height="40" Margin="10" Click="signInClicked"/>
-            <Button Content="Register" Width="75" Height="40" Margin="10" Click="registerClicked"/>
-            <TextBlock Height="100" Margin="20" Name="tbMessages"/>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Content="Insert Name"/>
+            <TextBox Name="name"/>
+            <Label Content="Insert Password"/>
+            <PasswordBox Name="pass" />
+            <Button Content="Sign In" Margin="358,10" Click="signInClicked"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label Name="loading" FontSize="20" HorizontalAlignment="Center" Margin="274,20,263,0" BorderBrush="White"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Label Content="Not registered yet? Click the Register button" Height="30" Margin="274,20,263,0"/>
+            <Button Content="Register"  Margin="358,40" Click="registerClicked"/>
         </StackPanel>
     </Grid>
 </Window>

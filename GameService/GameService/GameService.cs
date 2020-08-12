@@ -129,5 +129,27 @@ namespace GameService
                 this.games.Remove(player);
             this.updateAllClinetToUpdateList(player);
         }
+
+        public void SingIn(string user, string pass)
+        {
+            if (!isValidUser(user, pass))
+            {
+                OpponentDisconnectedFault userExsists = new OpponentDisconnectedFault
+                {
+
+                    Details = $"Error need to implmnet"
+                };
+                throw new FaultException<OpponentDisconnectedFault>(userExsists);
+            }
+            ICallback callback = OperationContext.Current.GetCallbackChannel<ICallback>();
+            this.updateAllClinetToUpdateList(user);
+            avilableClinets.Add(user, callback);
+        }
+
+        private bool isValidUser(string user, string pass)
+        {
+            //need to implnet check in data base if is cuurect
+            return false;
+        }
     }
 }

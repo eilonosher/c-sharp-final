@@ -92,6 +92,13 @@ namespace GamePlay.GamrServiceRef {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Register", ReplyAction="http://tempuri.org/IGameService/RegisterResponse")]
         System.Threading.Tasks.Task RegisterAsync(string user, string pass);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/SingIn", ReplyAction="http://tempuri.org/IGameService/SingInResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GamrServiceRef.OpponentDisconnectedFault), Action="http://tempuri.org/IGameService/SingInOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+        void SingIn(string user, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/SingIn", ReplyAction="http://tempuri.org/IGameService/SingInResponse")]
+        System.Threading.Tasks.Task SingInAsync(string user, string pass);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ReportMove", ReplyAction="http://tempuri.org/IGameService/ReportMoveResponse")]
         GamePlay.GamrServiceRef.MoveResult ReportMove(int location, string player);
         
@@ -191,6 +198,14 @@ namespace GamePlay.GamrServiceRef {
         
         public System.Threading.Tasks.Task RegisterAsync(string user, string pass) {
             return base.Channel.RegisterAsync(user, pass);
+        }
+        
+        public void SingIn(string user, string pass) {
+            base.Channel.SingIn(user, pass);
+        }
+        
+        public System.Threading.Tasks.Task SingInAsync(string user, string pass) {
+            return base.Channel.SingInAsync(user, pass);
         }
         
         public GamePlay.GamrServiceRef.MoveResult ReportMove(int location, string player) {
