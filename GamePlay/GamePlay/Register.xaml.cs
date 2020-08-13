@@ -41,7 +41,7 @@ namespace GamePlay
                 waitingForGame.Show();
                 this.Close();
             }
-            catch (FaultException<OpponentDisconnectedFault> err)
+            catch (FaultException<ConnectedFault> err)
             {
                 System.Windows.MessageBox.Show(err.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

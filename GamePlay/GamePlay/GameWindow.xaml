@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Canvas Name="gamePicture" MouseDown="gamePicture_MouseDown">
             <Canvas.Background>
-                <ImageBrush ImageSource="board_image.jpeg"/>
+                <ImageBrush ImageSource="board_image_6-7.jpeg"/>
             </Canvas.Background>
         </Canvas>
         <WrapPanel Grid.Row="1">

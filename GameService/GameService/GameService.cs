@@ -16,48 +16,46 @@ namespace GameService
     public class GameServiceClass : IGameService
     {
         int numClients = 0;
-        static int GAME_ID = 1;
         Dictionary<string, ICallback> avilableClinets = new Dictionary<string, ICallback>();
         Dictionary<string, GameZone> games = new Dictionary<string, GameZone>();
         public void Disconnect(string player)
         {
+            //remove from avilable clinet
             avilableClinets.Remove(player);
+            //ifis exit from game remove the game
             if (this.games[player] != null)
                 this.games.Remove(player);
+            //notify all other client that is disconnected
             foreach (var callBack in avilableClinets.Values)
             {
                 callBack.OtherPlayerDisconnected(player);
             }
         }
 
-        public void DisconnectBeforeGame(int player)
-        {
-            --numClients;
-        }
         public void Register(string name,string pass)
         {
-            if (avilableClinets.ContainsKey(name) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pass))
+            if (userExist(name) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pass))
              {
-                 OpponentDisconnectedFault userExsists = new OpponentDisconnectedFault
+                 ConnectedFault userExsists = new ConnectedFault
                  {
                      
                      Details = $"Error need to specific"
                  };
-                 throw new FaultException<OpponentDisconnectedFault>(userExsists);
+                 throw new FaultException<ConnectedFault>(userExsists);
              }
             ICallback callback = OperationContext.Current.GetCallbackChannel<ICallback>();
-            //To do : add to data base and check valiadtion of pass and user name
             this.updateAllClinetToUpdateList(name);
             avilableClinets.Add(name, callback);
-            
+        }
 
+        private bool userExist(string name)
+        {
+            //roni - need to implemenet serch in user list in db
+            return false;
         }
 
         private void updateAllClinetToUpdateList(string name)
         {
-            
-            
-            
             foreach(var callBack in avilableClinets.Values)
             {
                 callBack.OtherPlayerSignIn(name);
@@ -137,12 +135,12 @@ namespace GameService
         {
             if (!isValidUser(user, pass))
             {
-                OpponentDisconnectedFault userExsists = new OpponentDisconnectedFault
+                ConnectedFault userExsists = new ConnectedFault
                 {
 
                     Details = $"Error need to implmnet"
                 };
-                throw new FaultException<OpponentDisconnectedFault>(userExsists);
+                throw new FaultException<ConnectedFault>(userExsists);
             }
             ICallback callback = OperationContext.Current.GetCallbackChannel<ICallback>();
             this.updateAllClinetToUpdateList(user);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GameService
 {
     [DataContract]
-    internal class OpponentDisconnectedFault
+    internal class ConnectedFault
     {
         [DataMember]
         public string Details { get; set; }

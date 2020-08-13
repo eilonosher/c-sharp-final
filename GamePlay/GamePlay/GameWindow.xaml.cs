@@ -38,7 +38,7 @@ namespace GamePlay
         private char playerChar = 'y';
         private bool userExit = true;
 
-        private double DISC_SIZE = 60;
+        private double DISC_SIZE = 70;
 
         private double WIDTH_MARGIN = 0.15;
         private readonly static int HEIGHT_MARGIN = 20;

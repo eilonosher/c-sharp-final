@@ -149,7 +149,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IGameService_Register_OpponentDisconnectedFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGameService_Register_ConnectedFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -218,7 +218,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IGameService_SingIn_OpponentDisconnectedFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IGameService_SingIn_ConnectedFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -739,8 +739,8 @@
   <wsdl:message name="IGameService_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameService_Register_OpponentDisconnectedFaultFault_FaultMessage">
-    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/GameService" name="detail" element="q1:OpponentDisconnectedFault" />
+  <wsdl:message name="IGameService_Register_ConnectedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/GameService" name="detail" element="q1:ConnectedFault" />
   </wsdl:message>
   <wsdl:message name="IGameService_SingIn_InputMessage">
     <wsdl:part name="parameters" element="tns:SingIn" />
@@ -748,8 +748,8 @@
   <wsdl:message name="IGameService_SingIn_OutputMessage">
     <wsdl:part name="parameters" element="tns:SingInResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameService_SingIn_OpponentDisconnectedFaultFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/GameService" name="detail" element="q2:OpponentDisconnectedFault" />
+  <wsdl:message name="IGameService_SingIn_ConnectedFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/GameService" name="detail" element="q2:ConnectedFault" />
   </wsdl:message>
   <wsdl:message name="IGameService_ReportMove_InputMessage">
     <wsdl:part name="parameters" element="tns:ReportMove" />
@@ -818,12 +818,12 @@
     <wsdl:operation name="Register">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/Register" message="tns:IGameService_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/RegisterResponse" message="tns:IGameService_Register_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/RegisterOpponentDisconnectedFaultFault" name="OpponentDisconnectedFaultFault" message="tns:IGameService_Register_OpponentDisconnectedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/RegisterConnectedFaultFault" name="ConnectedFaultFault" message="tns:IGameService_Register_ConnectedFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="SingIn">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/SingIn" message="tns:IGameService_SingIn_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/SingInResponse" message="tns:IGameService_SingIn_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/SingInOpponentDisconnectedFaultFault" name="OpponentDisconnectedFaultFault" message="tns:IGameService_SingIn_OpponentDisconnectedFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/SingInConnectedFaultFault" name="ConnectedFaultFault" message="tns:IGameService_SingIn_ConnectedFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="ReportMove">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/ReportMove" message="tns:IGameService_ReportMove_InputMessage" />
@@ -886,9 +886,9 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGameService_Register_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="OpponentDisconnectedFaultFault">
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IGameService_Register_OpponentDisconnectedFaultFault_Fault" />
-        <soap12:fault use="literal" name="OpponentDisconnectedFaultFault" namespace="" />
+      <wsdl:fault name="ConnectedFaultFault">
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGameService_Register_ConnectedFaultFault_Fault" />
+        <soap12:fault use="literal" name="ConnectedFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="SingIn">
@@ -901,9 +901,9 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IGameService_SingIn_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="OpponentDisconnectedFaultFault">
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IGameService_SingIn_OpponentDisconnectedFaultFault_Fault" />
-        <soap12:fault use="literal" name="OpponentDisconnectedFaultFault" namespace="" />
+      <wsdl:fault name="ConnectedFaultFault">
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IGameService_SingIn_ConnectedFaultFault_Fault" />
+        <soap12:fault use="literal" name="ConnectedFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="ReportMove">

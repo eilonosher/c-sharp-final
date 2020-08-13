@@ -31,7 +31,7 @@ namespace GamePlay
             {
                 connectionToServer.SingIn(name.Text.Trim(), (pass.Password.Trim()));
             }
-            catch (FaultException<OpponentDisconnectedFault> err)
+            catch (FaultException<ConnectedFault> err)
             {
                 System.Windows.MessageBox.Show(err.Detail.Details, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

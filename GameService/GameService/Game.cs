@@ -8,8 +8,8 @@ namespace GameService
         private const int COL = 7;
         private string p1;
         private string p2;
-        private char playerOneChar = 'A';
-        private char playerTwoChar = 'B';
+        private readonly char playerOneChar = 'A';
+        private readonly char playerTwoChar = 'B';
         private ICallback callback1;
         private ICallback callback2;
         private char[,] board;
@@ -22,9 +22,8 @@ namespace GameService
             this.callback1 = callback1;
             this.callback2 = callback2;
             this.board = new char[ROW, COL];
-            initBoard();
             this.currentPlayer = p1;
-
+            initBoard();
         }
 
         private void initBoard()
@@ -40,28 +39,31 @@ namespace GameService
 
         internal MoveResult VerifyMove(int selectedCol, string player, System.Windows.Point p)
         {
-            MoveResult moveResult;
             selectedCol = selectedCol - 1;
+            //check if its player turn
             if (!player.Equals(currentPlayer))
                 return MoveResult.NotYourTurn;
             int i = ROW - 1;
-            for (; i >= 0; i--)             //find an empty spot to insert
+            //find the row to put
+            for (; i >= 0; i--)
             {
                 if (board[i, selectedCol] == '\0')
                     break;
             }
+            //check if is unlegal move
             if (colIsFull(selectedCol))
                 return MoveResult.UnlegalMove;
+            //fill the board with the current move
             this.board[i, selectedCol] = player.Equals(p1) ? playerOneChar : playerTwoChar;
+            //check if the player win the game
             if (ItsAWin(player))
             {
-                notifyAnotherPlayer(player, i, selectedCol, MoveResult.YouLose,p);
+                notifyAnotherPlayer(player, i, selectedCol, MoveResult.YouLose, p);
                 return MoveResult.YouWon;
             }
             this.changePlayerTurn();
-            notifyAnotherPlayer(player, i, selectedCol, MoveResult.GameOn,p);
+            notifyAnotherPlayer(player, i, selectedCol, MoveResult.GameOn, p);
             return MoveResult.GameOn;
-
         }
 
         private void changePlayerTurn()
@@ -73,11 +75,11 @@ namespace GameService
         {
             if (player.Equals(p1))
             {
-                callback2.OtherPlayerMoved(result, i, selectedCol,p);
+                callback2.OtherPlayerMoved(result, i, selectedCol, p);
             }
             else
             {
-                callback1.OtherPlayerMoved(result, i, selectedCol,p);
+                callback1.OtherPlayerMoved(result, i, selectedCol, p);
             }
         }
 
@@ -94,11 +96,8 @@ namespace GameService
             return areFourConnected(p);
         }
 
-
-
         public bool areFourConnected(char player)
         {
-
             // horizontalCheck 
             for (int j = 0; j < getHeight() - 3; j++)
             {
@@ -150,18 +149,6 @@ namespace GameService
         private int getHeight()
         {
             return COL;
-        }
-
-
-
-        private bool checkRowWin()
-        {
-            throw new NotImplementedException();
-        }
-
-        private bool checkColWin()
-        {
-            throw new NotImplementedException();
         }
     }
 }

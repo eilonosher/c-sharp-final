@@ -15,9 +15,9 @@ namespace GamePlay.GameServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ConnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
     [System.SerializableAttribute()]
-    public partial class OpponentDisconnectedFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ConnectedFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -86,14 +86,14 @@ namespace GamePlay.GameServiceRef {
     public interface IGameService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Register", ReplyAction="http://tempuri.org/IGameService/RegisterResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GameServiceRef.OpponentDisconnectedFault), Action="http://tempuri.org/IGameService/RegisterOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GameServiceRef.ConnectedFault), Action="http://tempuri.org/IGameService/RegisterConnectedFaultFault", Name="ConnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
         void Register(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Register", ReplyAction="http://tempuri.org/IGameService/RegisterResponse")]
         System.Threading.Tasks.Task RegisterAsync(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/SingIn", ReplyAction="http://tempuri.org/IGameService/SingInResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GameServiceRef.OpponentDisconnectedFault), Action="http://tempuri.org/IGameService/SingInOpponentDisconnectedFaultFault", Name="OpponentDisconnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GamePlay.GameServiceRef.ConnectedFault), Action="http://tempuri.org/IGameService/SingInConnectedFaultFault", Name="ConnectedFault", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
         void SingIn(string user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/SingIn", ReplyAction="http://tempuri.org/IGameService/SingInResponse")]

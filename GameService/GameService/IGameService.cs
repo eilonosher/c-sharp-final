@@ -13,11 +13,11 @@ namespace GameService
     public interface IGameService
     {
         [OperationContract]
-        [FaultContract(typeof(OpponentDisconnectedFault))]
+        [FaultContract(typeof(ConnectedFault))]
         void Register(string user,string pass);
 
         [OperationContract]
-        [FaultContract(typeof(OpponentDisconnectedFault))]
+        [FaultContract(typeof(ConnectedFault))]
         void SingIn(string user, string pass);
 
         [OperationContract]

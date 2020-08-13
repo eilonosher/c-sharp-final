@@ -49,7 +49,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="IGameService.cs" />
     <Compile Include="MoveResult.cs" />
-    <Compile Include="OpponentDisconnectedFault.cs" />
+    <Compile Include="ConnectedFault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameService.cs" />
   </ItemGroup>
