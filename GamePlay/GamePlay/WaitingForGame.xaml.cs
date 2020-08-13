@@ -38,9 +38,16 @@ namespace GamePlay
             InitializeComponent();
             userList = connectionToServer.GetAvliableClientsForUser(this.userName).Keys.ToList();
             listOfAvliablePlayers.ItemsSource = connectionToServer.GetAvliableClientsForUser(this.userName).Keys.ToList();
-            GameWindowManger.Instance.WaitingForGameWindow = (this);
             usrName.Content = "Hello " + name;
+            initDelegates();
+            GameWindowManger.Instance.WaitingForGameWindow = (this);
+        }
 
+        private void initDelegates()
+        {
+            this.clientCallback.startGame += startWithAnotherPlayer;
+            this.clientCallback.updateUserList += updateUserList;
+            this.clientCallback.confirmGame += confirmGame;
         }
 
         private void btnRefreshRivals_Click(object sender, RoutedEventArgs e)
@@ -85,7 +92,7 @@ namespace GamePlay
    
         }
 
-        internal void startWithAnotherPlayer(string p1)
+        private void startWithAnotherPlayer(string p1)
         {
             GameWindow newGame = new GameWindow(this.userName, p1, this.connectionToServer,clientCallback);
             this.userList.Remove(p1);

@@ -53,6 +53,7 @@ namespace GamePlay
             this.clientCallback = clientCallback;
             GameWindowManger.Instance.GameWindow = (this);
             this.watingWindow = GameWindowManger.Instance.WaitingForGameWindow;
+            this.clientCallback.playerMove += playerMove;
             this.board = new char[ROW, COL];
             initBoard();
             initMaps();

@@ -12,63 +12,47 @@ namespace GamePlay
     public class ClientCallback : IGameServiceCallback
     {
         #region Delegates
-        private GameServiceClient gameServiceClient;
-        private WaitingForGame cuurentWindow;
-        private GameWindow cuurentGameWindow;
-
+        internal Func<string,bool> confirmGame;
+        internal Action<string> startGame;
+        internal Action<string,string> updateUserList;
+        internal Action<MoveResult,int,int,Point> playerMove;
 
         public ClientCallback()
         {
         }
         #endregion
 
-        public void OtherPlayerConnected()
-        {
-            MessageBox.Show("Sdsdsdsdsdssssssssssssssssssssssssssssss");
-           /// throw new System.NotImplementedException();
-        }
-
-        public void OtherPlayerMoved(MoveResult moveResult, int location)
-        {
-            ///  throw new System.NotImplementedException();
-            string a = null;
-        }
-
-
-        bool IGameServiceCallback.ConfirmGame(string userToGame)
-        {
-            return GameWindowManger.Instance.WaitingForGameWindow.confirmGame(userToGame);
-        }
+     
 
         public void StartGameUser(string p1)
         {
-            GameWindowManger.Instance.WaitingForGameWindow.startWithAnotherPlayer(p1);
-        }
-
-        public void OtherPlayerConnected(string user)
-        {
-          
+            startGame(p1);
         }
 
         public void OtherPlayerSignIn(string user)
         {
-            GameWindowManger.Instance.WaitingForGameWindow.updateUserList(user, "Add");
+            updateUserList(user, "Add");
         }
 
         public void OtherPlayerDisconnected(string user)
         {
-            GameWindowManger.Instance.WaitingForGameWindow.updateUserList(user, "Del");
+            updateUserList(user, "Del");
         }
 
         public void OtherPlayerStartedGame(string user1, string user2)
         {
-            GameWindowManger.Instance.WaitingForGameWindow.updateUserList(user1, "Del");
-            GameWindowManger.Instance.WaitingForGameWindow.updateUserList(user2, "Del");
+            updateUserList(user1, "Del");
+            updateUserList(user2, "Del");
         }
 
         public void OtherPlayerMoved(MoveResult moveResult, int row, int col, Point p)
         {
             GameWindowManger.Instance.GameWindow.playerMove(moveResult, row, col,p);
+        }
+
+        public bool ConfirmGame(string userToGame)
+        {
+            return confirmGame(userToGame);
         }
     }
 }
