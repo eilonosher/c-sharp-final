@@ -89,14 +89,17 @@ namespace GamePlay
         {
             GameWindow newGame = new GameWindow(this.userName, p1, this.connectionToServer,clientCallback);
             this.userList.Remove(p1);
+            listOfAvliablePlayers.ItemsSource = null;
+            listOfAvliablePlayers.ItemsSource = userList;
+            listOfAvliablePlayers.Items.Refresh();
             newGame.Show();
             this.Hide();
         }
 
-        private async void startGameClicked(object sender, RoutedEventArgs e)
+        private void startGameClicked(object sender, RoutedEventArgs e)
         {
             string selectPlayer = listOfAvliablePlayers.SelectedItem.ToString();
-            bool result = this.connectionToServer.StartGameAsync(this.userName, selectPlayer).Result;
+            bool result = this.connectionToServer.StartGame(this.userName, selectPlayer);
             if(result == true)
             {
                 startWithAnotherPlayer(selectPlayer);

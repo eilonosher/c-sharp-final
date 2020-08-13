@@ -63,3 +63,4 @@ C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GameP
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.csproj.CoreCompileInputs.cache
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.exe
 C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.pdb
+C:\Users\USER\Desktop\Git-Hub\C-sharp-final\GitRepo\c-sharp-final\GamePlay\GamePlay\obj\Debug\GamePlay.csprojAssemblyReference.cache

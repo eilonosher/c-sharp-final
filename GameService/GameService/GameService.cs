@@ -15,14 +15,13 @@ namespace GameService
           ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class GameServiceClass : IGameService
     {
-        int numClients = 0;
         Dictionary<string, ICallback> avilableClinets = new Dictionary<string, ICallback>();
         Dictionary<string, GameZone> games = new Dictionary<string, GameZone>();
         public void Disconnect(string player)
         {
             //remove from avilable clinet
             avilableClinets.Remove(player);
-            //ifis exit from game remove the game
+            //if is exit from game remove the game
             if (this.games.ContainsKey(player))
                 this.games.Remove(player);
             //notify all other client that is disconnected
@@ -34,7 +33,6 @@ namespace GameService
                 }
               );
                 updateOtherPlayerThread.Start();
-
             }
         }
 
@@ -44,7 +42,6 @@ namespace GameService
             {
                 ConnectedFault userExsists = new ConnectedFault
                 {
-
                     Details = $"Error need to specific"
                 };
                 throw new FaultException<ConnectedFault>(userExsists);
