@@ -23,26 +23,32 @@ namespace GameService
             //remove from avilable clinet
             avilableClinets.Remove(player);
             //ifis exit from game remove the game
-            if (this.games[player] != null)
+            if (this.games.ContainsKey(player))
                 this.games.Remove(player);
             //notify all other client that is disconnected
             foreach (var callBack in avilableClinets.Values)
             {
-                callBack.OtherPlayerDisconnected(player);
+                Thread updateOtherPlayerThread = new Thread(() =>
+                {
+                    callBack.OtherPlayerDisconnected(player);
+                }
+              );
+                updateOtherPlayerThread.Start();
+
             }
         }
 
-        public void Register(string name,string pass)
+        public void Register(string name, string pass)
         {
             if (userExist(name) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(pass))
-             {
-                 ConnectedFault userExsists = new ConnectedFault
-                 {
-                     
-                     Details = $"Error need to specific"
-                 };
-                 throw new FaultException<ConnectedFault>(userExsists);
-             }
+            {
+                ConnectedFault userExsists = new ConnectedFault
+                {
+
+                    Details = $"Error need to specific"
+                };
+                throw new FaultException<ConnectedFault>(userExsists);
+            }
             ICallback callback = OperationContext.Current.GetCallbackChannel<ICallback>();
             this.updateAllClinetToUpdateList(name);
             avilableClinets.Add(name, callback);
@@ -56,23 +62,22 @@ namespace GameService
 
         private void updateAllClinetToUpdateList(string name)
         {
-            foreach(var callBack in avilableClinets.Values)
+            foreach (var callBack in avilableClinets.Values)
             {
-                callBack.OtherPlayerSignIn(name);
+                Thread updateOtherPlayerThread = new Thread(() =>
+                {
+                    callBack.OtherPlayerSignIn(name);
+                }
+               );
+                updateOtherPlayerThread.Start();
             }
         }
 
-        public MoveResult ReportMove(int col, string player,Point p)
+        public MoveResult ReportMove(int col, string player, Point p)
         {
-           return games[player].VerifyMove(col , player,p);
+            return games[player].VerifyMove(col, player, p);
         }
 
-        public void DisconnectBeforeGame(string player)
-        {
-            throw new NotImplementedException();
-        }
-
-     
         public Dictionary<string, ICallback> GetAvliableClients()
         {
             return avilableClinets;
@@ -98,8 +103,8 @@ namespace GameService
         {
             foreach (var pair in avilableClinets)
             {
-                if(!pair.Key.Equals(p1) && !pair.Key.Equals(p2))
-                     pair.Value.OtherPlayerStartedGame(p1,p2);
+                if (!pair.Key.Equals(p1) && !pair.Key.Equals(p2))
+                    pair.Value.OtherPlayerStartedGame(p1, p2);
             }
         }
 
